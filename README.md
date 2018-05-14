@@ -17,7 +17,7 @@ my own recipe App codes including recipe-spider, recipe-mobile, recipe-server, m
 
 ## Some Screenshot
 
-![Screenshot1](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG83.jpeg)
-![Screenshot2](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG84.jpeg)
-![Screenshot3](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG85.jpeg)
-![Screenshot4](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG86.jpeg)
+![Screenshot1](https://raw.githubusercontent.com/yeqown/recipe/master/screenshots/WechatIMG83.jpeg)
+![Screenshot2](https://raw.githubusercontent.com/yeqown/recipe/master/screenshots/WechatIMG84.jpeg)
+![Screenshot3](https://raw.githubusercontent.com/yeqown/recipe/master/screenshots/WechatIMG85.jpeg)
+![Screenshot4](https://raw.githubusercontent.com/yeqown/recipe/master/screenshots/WechatIMG86.jpeg)
