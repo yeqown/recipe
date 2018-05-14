@@ -13,3 +13,11 @@ my own recipe App codes including recipe-spider, recipe-mobile, recipe-server, m
 ## [recipe-mobile](https://github.com/yeqown/recipe/tree/master/recipes-mobile)
 
 > Need: Android Studio, NodeJS
+
+
+## Some Screenshot
+
+![Screenshot1](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG83.jpeg)
+![Screenshot2](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG84.jpeg)
+![Screenshot3](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG85.jpeg)
+![Screenshot4](https://github.com/yeqown/recipe/tree/master/screenshots/WechatIMG86.jpeg)
