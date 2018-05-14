@@ -2,8 +2,14 @@
 my own recipe App codes including recipe-spider, recipe-mobile, recipe-server, maybe post some blog to record this.
 
 
-## recipe-server
+## [recipe-server](https://github.com/yeqown/recipe/tree/master/recipes-server)
 
-## recipe-spider
+> Need: Golang, Mongo
 
-## recipe-mobile
+## [recipe-spider](https://github.com/yeqown/recipe/tree/master/recipes-spider)
+
+> Need: Python3.6, Redis, Mongo
+
+## [recipe-mobile](https://github.com/yeqown/recipe/tree/master/recipes-mobile)
+
+> Need: Android Studio, NodeJS
