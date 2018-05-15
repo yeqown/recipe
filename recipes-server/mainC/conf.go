@@ -1,48 +1,51 @@
 package main
 
 import (
-	"recipes-server/models"
-
 	"bufio"
 	"encoding/json"
+	"github.com/yeqown/gweb"
 	"os"
+
+	"recipes-server/models"
 )
 
-type ServerConfig struct {
-	Port    int    `json:"Port"`
-	Logpath string `json:"Logpath"`
+var (
+	db_ins     *DBConf
+	server_ins *ServerConf
+)
+
+type ServerConf struct {
+	HttpC *gweb.ServerConfig    `json:"ServerConfig"`
+	RpcC  *gweb.RpcServerConfig `json:"RpcServerConfig"`
 }
 
-type RpcServerConfig struct {
-	Host      string `json:"host"`       // host
-	Port      int    `json:"port"`       // port
-	Path      string `json:"path"`       // path
-	DebugPath string `json:"debug_path"` // debug_path
-	Network   string `json:"network"`    // tcp http
+type DBConf struct {
+	MysqlC *models.MysqlConfig `json:"MysqlConfig"`
+	RedisC *models.RedisConfig `json:"RedisConfig"`
+	MgoC   *models.MongoConfig `json:"MongoConfig"`
 }
 
-type Config struct {
-	ServerC *ServerConfig       `json:"ServerConfig"`
-	RpcC    *RpcServerConfig    `json:"RpcServerConfig"`
-	MysqlC  *models.MysqlConfig `json:"MysqlConfig"`
-	RedisC  *models.RedisConfig `json:"RedisConfig"`
-	MgoC    *models.MongoConfig `json:"MongoConfig"`
-}
-
-var _instance *Config
-
-func GetInstance() *Config {
-	return _instance
-}
-
-func LoadConfig(filepath string) error {
-	fp, err := os.Open(filepath)
+func loadDBConf(file string) error {
+	fp, err := os.Open(file)
 	defer fp.Close()
 	if err != nil {
 		return err
 	}
 	body, _ := bufio.NewReader(fp).ReadBytes(0)
-	if err = json.Unmarshal(body, &_instance); err != nil {
+	if err = json.Unmarshal(body, &db_ins); err != nil {
+		return err
+	}
+	return nil
+}
+
+func loadServerConf(file string) error {
+	fp, err := os.Open(file)
+	defer fp.Close()
+	if err != nil {
+		return err
+	}
+	body, _ := bufio.NewReader(fp).ReadBytes(0)
+	if err = json.Unmarshal(body, &server_ins); err != nil {
 		return err
 	}
 	return nil

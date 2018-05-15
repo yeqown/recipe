@@ -1,0 +1,13 @@
+{
+	"ServerConfig": {
+		"Port": 5050,
+		"Logpath": "./logs"
+	},
+	"RpcServerConfig": {
+		"host": "127.0.0.1",
+		"port": 5051,
+		"path": "",
+		"debug_path": "",
+		"network": "tcp"
+	}
+}

@@ -4,21 +4,24 @@ import (
 	"github.com/go-redis/redis"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	. "github.com/yeqown/gweb/logger"
+	"github.com/yeqown/gweb/utils"
 	"gopkg.in/mgo.v2"
-
 	"math"
 	"strings"
 	"time"
+)
 
-	. "recipes-server/logger"
-	"recipes-server/utils"
+type (
+	SqlDB        *gorm.DB
+	RedisClient  *redis.Client
+	MongoSession *mgo.Session
 )
 
 var (
-	mysqlIns    *gorm.DB
-	postgresIns *gorm.DB
-	redisIns    *redis.Client
-	mgoIns      *mgo.Session
+	mysqlIns *gorm.DB
+	redisIns *redis.Client
+	mgoIns   *mgo.Session
 )
 
 type MysqlConfig struct {
@@ -47,9 +50,7 @@ type RedisConfig struct {
 	Wait        bool   `json:"Wait"`
 }
 
-/*
- * connect to mysql
- */
+// Connect to mysql
 func ConnectMysql(myc *MysqlConfig) {
 	conStr := utils.Fstring("%sloc=%s&parseTime=%s&charset=%s",
 		myc.Addr,
@@ -107,28 +108,35 @@ func ConnectRedis(rec *RedisConfig) {
 
 /*
  * Get db connection
- * Mysql / Postgres / Redis / Mongo .etc
+ * Mysql / Redis / Mongo .etc
  */
-func getMysqlDB() *gorm.DB {
+
+// Get Mysql Connection
+func GetMysqlDB() *gorm.DB {
 	return mysqlIns
 }
 
-func getRedisDB() *redis.Client {
+// Get Redis Connection
+func GetRedisDB() *redis.Client {
 	return redisIns
 }
 
-func getMongoClone() *mgo.Session {
+// Get Mgo Session Clone
+func GetMongoClone() *mgo.Session {
 	return mgoIns.Clone()
 }
 
-func getMongoDB() *mgo.Session {
+// Get Mgo Session
+func GetMongoDB() *mgo.Session {
 	return mgoIns
 }
 
+// Create Mgo DB
 func NewMongoDB(dbName string) *mgo.Database {
-	return getMongoClone().DB(dbName)
+	return GetMongoClone().DB(dbName)
 }
 
+// Create Mgo Collection
 func NewMongoColl(dbName, collName string) *mgo.Collection {
 	return NewMongoDB(dbName).C(collName)
 }

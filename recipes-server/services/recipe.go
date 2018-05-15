@@ -2,9 +2,9 @@ package services
 
 import (
 	"errors"
+	. "github.com/yeqown/gweb/logger"
 	"gopkg.in/mgo.v2/bson"
 
-	. "recipes-server/logger"
 	M "recipes-server/models"
 )
 
