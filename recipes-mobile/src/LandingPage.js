@@ -16,7 +16,7 @@ class LandingPage extends Component {
   }
 
   componentWillMount() {
-    if (false) {
+    if (true) {
       this._enter()
     }
   }

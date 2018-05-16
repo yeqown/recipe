@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, ScrollView, Picker, TextInput, FlatLi
 import { Button, Card, Icon, Header } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import { COLOR } from '../config';
-import { getRecipeCategories, getRecipeListByCategory } from './rest/recipe';
+import { getRecipeCategories, getRecipeListByCategory, searchRecipe } from './rest/recipe';
 
 // const categories = [
 //   {
@@ -46,6 +46,7 @@ class Explore extends React.Component {
     categoryRecipeCnt: 0,
     mode: displayMode,
     noMore: false,
+    searchRecipeName: '',
   }
 
   refresh() {
@@ -105,10 +106,33 @@ class Explore extends React.Component {
     })
   }
 
+  _searchRecipeByName(recipe_name, page) {
+    let limit = 10,
+        skip = (page - 1) * 10;
+    searchRecipe({recipe_name, limit, skip})
+    .then(data => {
+      console.log(data)
+      if (data.code === 0) {
+        this.setState({
+          recipes: data.recipes, 
+          noMore: data.recipes.length === 0,
+        })
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   _searchInputBlur() {
+    let {searchRecipeName} = this.state;
     this.setState({
       mode: displayMode,
-    })
+    });
+    if (!searchRecipeName.length) {
+      return
+    }
+    this._searchRecipeByName(searchRecipeName, 1);
   }
 
   _renderLeftHeaderComp() {
@@ -140,6 +164,7 @@ class Explore extends React.Component {
               }}
               underlineColorAndroid="transparent"
               onBlur={() => this._searchInputBlur() }
+              onChangeText={(text) => this.setState({searchRecipeName: text})}
               returnKeyLabel="done"
             />
           </View>

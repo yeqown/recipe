@@ -12,6 +12,7 @@ export const COLOR = {
   LightBlue: "#51bbae",
   Purple: "#9c27b0",
   Gray: "#eceaea",
+  LightWhite: "#f0f0f0",
 }
 
 export const DEFAULT_NAV_BAR_STYLE = {

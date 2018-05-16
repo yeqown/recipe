@@ -17,7 +17,7 @@ class RListItem extends React.Component {
       <View style={styles.container}>
         { 
           leftText !== undefined?
-          (<Text style={{flex:1}}>{leftText}</Text>)
+          (<Text style={{flex: 1}}>{leftText}</Text>)
           :
           null
         }
