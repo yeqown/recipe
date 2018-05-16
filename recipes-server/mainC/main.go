@@ -55,4 +55,18 @@ func registerHttpRoutes() {
 			ctr.PoolGetRecipeByCatForm,
 			ctr.PoolGetRecipeByCatResp,
 		})
+
+	// 每日推荐
+	gweb.AddRoute(
+		&gweb.Route{"/recipe/recommendDaily", http.MethodGet, ctr.RecipeRecommendGet,
+			ctr.PoolRecipeRecommendForm,
+			ctr.PoolRecipeRecommendResp,
+		})
+
+	// 每日搜索
+	gweb.AddRoute(
+		&gweb.Route{"/recipe/search", http.MethodGet, ctr.RecipeSearchGet,
+			ctr.PoolRecipeSearchForm,
+			ctr.PoolRecipeSearchResp,
+		})
 }

@@ -3,6 +3,7 @@ package services
 import (
 	"errors"
 	. "github.com/yeqown/gweb/logger"
+	"github.com/yeqown/gweb/utils"
 	"gopkg.in/mgo.v2/bson"
 
 	M "recipes-server/models"
@@ -81,4 +82,43 @@ func GetAllRecipeCategory() ([]string, error) {
 	}
 
 	return cats, nil
+}
+
+func GetOneRecipeWithSkip(skip int) (*M.RecipeDetail, error) {
+	coll := M.NewRecipeDetailColl()
+	defer coll.Database.Session.Close()
+
+	r := new(M.RecipeDetail)
+	if err := coll.Find(nil).
+		Skip(skip).
+		Limit(1).
+		One(r); err != nil {
+		AppL.Error(err.Error())
+		return nil, err
+	}
+	return r, nil
+}
+
+func SearchRecipeByName(name string, limit, skip int) ([]*M.Recipe, int, error) {
+	coll := M.NewRecipeDetailColl()
+	defer coll.Database.Session.Close()
+
+	rs := make([]*M.Recipe, 0, limit)
+	query := coll.Find(
+		bson.M{
+			"name": bson.M{
+				"$regex": utils.Fstring("^.%s.*$", name),
+			},
+		},
+	)
+	total, err := query.Count()
+	if err != nil {
+		return rs, 0, err
+	}
+
+	if err := query.Skip(skip).Limit(limit).All(&rs); err != nil {
+		return rs, total, err
+	}
+
+	return rs, total, nil
 }

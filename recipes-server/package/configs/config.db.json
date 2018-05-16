@@ -1,0 +1,25 @@
+{
+	"MysqlConfig": {
+		"Addr": "yeqown:yeqown@tcp(127.0.0.1:3306)/testdb?",
+		"Loc": "Local",
+		"ParseTime": "true",
+		"Charset": "utf8",
+		"Pool": 20
+	},
+	"RedisConfig": {
+		"Addr": "127.0.0.1:6379",
+		"DB": 1,
+		"Password": "",
+		"PoolSize": 20,
+		"Timeout": 2,
+		"MaxActive": 500,
+		"MaxIdle": 50,
+		"IdleTimeout": 600,
+		"Wait": true
+	},
+	"MongoConfig": {
+		"Addrs": "localhost:27017",
+		"Timeout": 5,
+		"PoolLimit": 20
+	}
+}

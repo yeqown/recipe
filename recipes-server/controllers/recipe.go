@@ -9,6 +9,7 @@ import (
 	S "recipes-server/services"
 )
 
+// 获取菜谱数量
 type RecipeCntForm struct{}
 
 var PoolRecipeCntForm = &sync.Pool{New: func() interface{} { return &RecipeCntForm{} }}
@@ -32,7 +33,6 @@ func RecipeCountGet(req *RecipeCntForm) *RecipeCntResp {
 }
 
 // get recipes by category and limit then skip
-//
 type GetRecipeByCatForm struct {
 	Cat   string `schema:"cat" valid:"Required;MinSize(1)" json:"cat"`
 	Limit int    `schema:"limit" valid:"Min(1)" json:"limit"`
@@ -67,7 +67,6 @@ func GetRecipeByCat(req *GetRecipeByCatForm) *GetRecipeByCatResp {
 }
 
 // get recipe detail by id
-//
 type GetRecipeDetailForm struct {
 	Id string `schema:"id" valid:"Required;MinSize(1)" json:"id"`
 }
@@ -100,6 +99,7 @@ func GetRecipeDetail(req *GetRecipeDetailForm) *GetRecipeDetailResp {
 	return res
 }
 
+// 获取菜谱分类
 type GetRecipeCategoriesForm struct{}
 
 var PoolGetRecipeCategoriesForm = &sync.Pool{New: func() interface{} { return &GetRecipeCategoriesForm{} }}
