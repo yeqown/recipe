@@ -23,6 +23,12 @@ const list = [
     iconColor: COLOR.Orange,
     screen: 'About',
   },
+  {
+    title: '测试浏览器组件',
+    icon: 'face',
+    iconColor: COLOR.Orange,
+    screen: 'WebviewDemo',
+  }
 ];
 
 class Setting extends React.Component {

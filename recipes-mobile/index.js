@@ -6,6 +6,7 @@ import { TabNavigator, StackNavigator, SwitchNavigator, TabBarTop, TabBarBottom 
 import HomeScreen from './src/Home';
 import SettingHome from './src/Setting';
 import Explore from './src/Explore';
+import WebviewDemo from './src/WebviewDemo';
 import LandingPage from './src/LandingPage';
 import SettingFav from './src/setting/SettingFav';
 import About from './src/setting/About';
@@ -67,6 +68,12 @@ const AppNavgator = TabNavigator(
               tabBarVisible: false,
             }
           },
+          WebviewDemo: {
+            screen: WebviewDemo,
+            navigationOptions: {
+              tabBarVisible: false,
+            }
+          }
         },
         {
           initialRouteName: 'SettingHome',
